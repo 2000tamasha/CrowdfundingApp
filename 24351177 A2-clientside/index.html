@@ -79,7 +79,7 @@
             if(data.length>0){
               data.forEach( active => {
                   const newP=document.createElement("p");
-                  newP.textContent=`Concert: ${active.FUNDRAISER_ID}, Location: ${active.ORGANIZER}`;
+                  newP.textContent=`Fundraiser ID: ${active.FUNDRAISER_ID}, Organizer: ${active.ORGANIZER}`;
 
                   dataDiv.appendChild(newP);
               });
