@@ -16,7 +16,11 @@ app.get("/",(req,res)=>{
   res.sendFile(path.join(__dirname,"index.html"));
 });
 
-//we will add more routes here
+//route to serve index.html
+app.get("/search",(req,res)=>{
+  res.sendFile(path.join(__dirname,"search.html"));
+});
+
 
 app.listen(8080,()=>{
   console.log("Running in 8080");
