@@ -63,20 +63,49 @@
     <!-- Active Fundraisers -->
     <section class="fundraisers">
         <h2>Active Fundraisers</h2>
-        <div id="fundraiser-list">
-            <!-- Fundraiser items will be populated here via JavaScript -->
+        <div id="data">
+            <!-- Fundraiser items will be populated here via JavaScript -->  
         </div>
+
+      <script>
+        //call GET API to get a list of Concerts
+        fetch("http://localhost:3060/api/FUNDRAISER/active") 
+          .then(response => response.json())
+          .then(data => {
+            
+            const dataDiv=document.getElementById('data');
+            dataDiv.innerHTML="";
+
+            if(data.length>0){
+              data.forEach( active => {
+                  const newP=document.createElement("p");
+                  newP.textContent=`Concert: ${active.FUNDRAISER_ID}, Location: ${active.ORGANIZER}`;
+
+                  dataDiv.appendChild(newP);
+              });
+
+            }
+            else{
+              dataDiv.textContent="No data";
+            }
+          })
+          .catch(error=>{
+            console.error("Error fecthing data",error);
+            document.getElementById('data').textContent="Failed to load data";
+          });
+
+      </script>
+        
     </section>
+
+       
 
     <!-- Contact Information -->
     <footer>
         <p>Contact us: [Phone Number] | [Email] | [Address]</p>
     </footer>
-<!-- MDB -->
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/8.0.0/mdb.umd.min.js"
-></script>
+
+
  
 </body>
 </html>
