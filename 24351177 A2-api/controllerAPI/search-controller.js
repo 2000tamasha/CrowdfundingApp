@@ -46,32 +46,6 @@ router.get("/organizer/:organizer", (req, res)=>{
 
 
 
-// 3. Retrieve a fundraiser by multiple categories
-router.get("/category/:categories", (req, res) => {
-    // Split categories from the request parameter
-    const categories = req.params.categories.split(',');
-
-    // Create a SQL query with placeholders for each category
-    const placeholders = categories.map(() => '?').join(',');
-    const sql = `
-        SELECT FUNDRAISER.*
-        FROM FUNDRAISER 
-        JOIN CATEGORY ON FUNDRAISER.CATEGORY_ID = c.CATEGORY_ID
-        WHERE CATEGORY.NAME IN (${placeholders})
-    `;
-
-    // Execute the query, passing the categories as an array
-    connection.query(sql, categories, (err, records) => {
-        if (err) {
-            console.error("Error while retrieving the data", err);
-            res.status(500).send("Error retrieving data");
-        } else {
-            res.send(records);
-        }
-    });
-});
-
-
 
 
 // 3. Retrieve a fundraiser by specific criteria from the database (example: category)
