@@ -33,66 +33,40 @@
    
  
    <!-- Active Fundraisers -->
-  <div class="container-fluid pt-5">
-    <h2>Active Fundraisers</h2>
-    <div id="data"> </div>
+    <section class="fundraisers">
+        <h2>Active Fundraisers</h2>
+        <div id="data"> </div>
 
-    <script>
-      // Call GET API to get a list of active fundraisers
-      fetch("http://localhost:3060/api/FUNDRAISER/active")
-        .then(response => response.json())
-        .then(data => {
-          const dataDiv = document.getElementById('data');
-          dataDiv.innerHTML = ""; // Clear existing content
+      <script>
+        //call GET API to get a list of Concerts
+        fetch("http://localhost:3060/api/FUNDRAISER/active") 
+          .then(response => response.json())
+          .then(data => {
+            
+            const dataDiv=document.getElementById('data');
+            dataDiv.innerHTML="";
 
-          if (data.length > 0) {
-            data.forEach(active => {
-              // Create card container
-              const cardDiv = document.createElement("div");
-              cardDiv.classList.add("card", "img-fluid", "mb-3");
-              cardDiv.style.width = "500px";
+            if(data.length>0){
+              data.forEach( active => {
+                  const newP=document.createElement("p");
+                  newP.textContent=`Fundraiser ID: ${active.FUNDRAISER_ID}, Organizer: ${active.ORGANIZER}`;
 
-              // Create image element
-              const img = document.createElement("img");
-              img.classList.add("card-img-top");
-              img.src = active.IMAGE_URL || "header.png"; // Use IMAGE_URL or default
-              img.style.width = "100%";
+                  dataDiv.appendChild(newP);
+              });
 
-              // Create overlay div
-              const overlayDiv = document.createElement("div");
-              overlayDiv.classList.add("card-img-overlay");
+            }
+            else{
+              dataDiv.textContent="No data";
+            }
+          })
+          .catch(error=>{
+            console.error("Error fecthing data",error);
+            document.getElementById('data').textContent="Failed to load data";
+          });
 
-              // Create description for card
-              const cardText = document.createElement("p");
-              cardText.textContent = `Fundraiser ID: ${active.FUNDRAISER_ID}, Organizer: ${active.ORGANIZER} ,Caption: ${active.CAPTION}, Target funding: ${active.TARGET_FUNDING} , Current funding: ${active.CURRENT_FUNDING}, City: ${active.CITY}, Status: ${active.ACTIVE} `;
-
-              // Create link or button
-              const cardLink = document.createElement("a");
-              cardLink.href = "#"; // You can use an actual link here
-              cardLink.textContent = "See Details";
-
-              // Append elements to overlay div
-              overlayDiv.appendChild(cardText);
-              overlayDiv.appendChild(cardLink);
-
-              // Append image and overlay to card
-              cardDiv.appendChild(img);
-              cardDiv.appendChild(overlayDiv);
-
-              // Append card to dataDiv
-              dataDiv.appendChild(cardDiv);
-            });
-          } else {
-            dataDiv.textContent = "No data";
-          }
-        })
-        .catch(error => {
-          console.error("Error fetching data", error);
-          document.getElementById('data').textContent = "Failed to load data";
-        });
-
-    </script>
-</div>
+      </script>
+        
+    </section>
 
              
 
