@@ -57,7 +57,7 @@
             const Categoryselect = document.querySelector('input[name="category"]:checked');
 
             // Check whether the category is selected
-            if (!selectedCategory) {
+            if (!Categoryselect) {
                 document.getElementById('data').textContent = "Please select a category.";
                 return;
             }
