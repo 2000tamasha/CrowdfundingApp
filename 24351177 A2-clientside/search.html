@@ -26,7 +26,7 @@
      <!-- Form -->
     <div class="container mt-3">
   <h2>Search a fundraiser by Organizer</h2>
-  <form action="#">
+
     <div class="mb-3 mt-3">
       <label for="organizer" class="form-label">Fundraiser organizer:</label>
     <select class="form-select" id="select1" name="select1">
@@ -37,8 +37,8 @@
       <option value="henry">Henry Diggs</option>
     </select>
     </div>
-    <button type="submit" class="btn btn-primary" onclick="let select1=document.getElementById('select1').value; searchByOrganizer(select1);" >Search</button>
-  </form>
+    <input type="button"  value="Search" class="btn btn-primary" onclick="let select1=document.getElementById('select1').value; searchByOrganizer(select1);" >Search</button>
+ 
 </div>
 
          <div id="data"></div>
