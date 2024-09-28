@@ -57,7 +57,7 @@ function searchByOrganizer(organizer){
                 if(data.length>0){
                   data.forEach( fundraiser => {
                       const newP=document.createElement("p");
-                      newP.textContent=`Concert: ${FUNDRAISER.FUNDRAISER_ID}, Location: ${FUNDRAISER.ORGANIZER}`;
+                      newP.textContent=`Concert: ${fundraiser.FUNDRAISER_ID}, Location: ${fundraiser.ORGANIZER}`;
 
                       dataDiv.appendChild(newP);
                   });
