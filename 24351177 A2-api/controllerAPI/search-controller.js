@@ -51,7 +51,7 @@ router.get("/organizer/:organizer", (req, res)=>{
 // 3. Retrieve a fundraiser by specific criteria from the database (example: category)
 router.get("/category/:category", (req, res) => {
     connection.query(
-        `SELECT FUNDRAISER.*,CATEGORY.NAME 
+        `SELECT FUNDRAISER.*,NAME 
          FROM FUNDRAISER  
          INNER JOIN CATEGORY ON FUNDRAISER.CATEGORY_ID = CATEGORY.CATEGORY_ID 
          WHERE CATEGORY.NAME = ?
