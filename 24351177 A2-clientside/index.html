@@ -64,13 +64,11 @@
 
               // Create description for card
               const cardText = document.createElement("p");
-              cardText.classList.add("card-text", "text-white");
               cardText.textContent = `Fundraiser ID: ${active.FUNDRAISER_ID}, Organizer: ${active.ORGANIZER} ,Caption: ${active.CAPTION}, Target funding: ${active.TARGET_FUNDING} , Current funding: ${active.CURRENT_FUNDING}, City: ${active.CITY}, Status: ${active.ACTIVE} `;
 
               // Create link or button
               const cardLink = document.createElement("a");
               cardLink.href = "#"; // You can use an actual link here
-              cardLink.classList.add("card-text", "text-white");
               cardLink.textContent = "See Details";
 
               // Append elements to overlay div
