@@ -24,75 +24,77 @@
 </div>
    
 
-   <div class="container mt-3">
-    <div class="mb-3 mt-3">
-        <h2>Search a fundraiser by Category</h2>
+<div class="container mt-3">
+        <div class="mb-3 mt-3">
+            <h2>Search a fundraiser by Category</h2>
 
-        
-        <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="category" name="category" value="Medical">
-    <label class="form-check-label" for="check1">Medical</label>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" id="medical" name="category" value="Medical">
+                <label class="form-check-label" for="medical">Medical</label>
             </div>
         
-        <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="category" name="category" value="Education">
-    <label class="form-check-label" for="check1">Education</label>
-    </div>
-
-        <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="category" name="category" value="Environment">
-    <label class="form-check-label" for="check1">Environment</label>
+            <div class="form-check">
+                <input type="radio" class="form-check-input" id="education" name="category" value="Education">
+                <label class="form-check-label" for="education">Education</label>
             </div>
-        
+
+            <div class="form-check">
+                <input type="radio" class="form-check-input" id="environment" name="category" value="Environment">
+                <label class="form-check-label" for="environment">Environment</label>
+            </div>
+        </div>
+
+        <input type="button" value="Search" class="btn btn-primary" onclick="searchByCategory();">
     </div>
-    <input type="button"  value="Search" class="btn btn-primary" onclick="let category=document.getElementById('category').value; searchByCategory(category);" >
- 
-</div>
-         <div id="data"></div>
 
-    <script>
+    <div id="data""></div>
 
-        function searchByCategory(category){
 
-             // Get the selected radio button
-        const selectedCategory = document.querySelector('input[name="category"]:checked');
 
-        // Check if a category is selected
-        if (!selectedCategory) {
-            document.getElementById('data').textContent = "Please select a category.";
-            return;
-        }
+ <script>
+        function searchByCategory() {
+            // Get the selected radio button
+            const selectedCategory = document.querySelector('input[name="category"]:checked');
 
-        // Get the value of the selected category
-        const category = selectedCategory.value;
-           
-            fetch("http://localhost:3060/api/search/category/"+category)
-              .then(response => response.json())
-              .then(data => {
-
-                const dataDiv=document.getElementById('data');
-                dataDiv.innerHTML="";
-
-                if(data.length>0){
-                  data.forEach( fundraisers => {
-                      const newP=document.createElement("p");
-                      newP.textContent=`Concert: ${fundraisers.FUNDRAISER_ID}, Location: ${fundraisers.ORGANIZER}`;
-
-                      dataDiv.appendChild(newP);
-                  });
-
-                }
-                else{
-                  dataDiv.textContent="No concert data";
-                }
-              })
-              .catch(error=>{
-                console.error("Error fecthing data",error);
-                document.getElementById('data').textContent="Failed to load data";
-              });
+            // Check if a category is selected
+            if (!selectedCategory) {
+                document.getElementById('data').textContent = "Please select a category.";
+                return;
             }
 
+            // Get the value of the selected category
+            const category = selectedCategory.value;
+           
+            fetch("http://localhost:3060/api/search/category/" + category)
+              .then(response => response.json())
+              .then(data => {
+                  const dataDiv = document.getElementById('data');
+                  dataDiv.innerHTML = "";
+
+                  if (data.length > 0) {
+                      data.forEach(fundraiser => {
+                          const newP = document.createElement("p");
+                          newP.textContent = `Fundraiser ID: ${fundraiser.FUNDRAISER_ID}, Organizer: ${fundraiser.ORGANIZER}`;
+                          dataDiv.appendChild(newP);
+                      });
+                  } else {
+                      dataDiv.textContent = "No fundraiser data available.";
+                  }
+              })
+              .catch(error => {
+                  console.error("Error fetching data", error);
+                  document.getElementById('data').textContent = "Failed to load data.";
+              });
+        }
     </script>
+
+
+
+
+    
+        
+
+   
 
 
 
