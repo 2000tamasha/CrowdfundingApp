@@ -69,7 +69,7 @@
 
       </label>
     </div>
-    <button type="submit" class="btn btn-primary" onclick="earchFundraisers()">Search</button>
+    <button type="submit" class="btn btn-primary" onclick="searchFundraisers()">Search</button>
   </form>
 </div>
 
@@ -77,9 +77,9 @@
 
     <script>
 function searchFundraisers() {
-    const category = document.querySelector('select[name="category"]').value; // Assuming you have a select input for categories
-    const organizer = document.querySelector('input[name="organizer"]').value; // Input for organizer name
-    const city = document.querySelector('input[name="city"]').value; // Input for city
+    const category = document.querySelector('select[name="select2"]').value; // Assuming you have a select input for categories
+    const organizer = document.querySelector('input[name="select1"]').value; // Input for organizer name
+    const city = document.querySelector('input[name="radio"]').value; // Input for city
 
     // Prepare the API endpoint with the selected category
     let apiUrl = `http://localhost:3060/api/search/category/${category}`;
