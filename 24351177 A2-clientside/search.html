@@ -41,6 +41,18 @@
  
 </div>
 
+  <h2>Search a fundraiser by Organizer</h2>
+    <div class="mb-3 mt-3">
+      <label for="category" class="form-label">Category:</label>
+    <select class="form-select" id="select2" name="select1">
+      <option value="Education">Education</option>
+      <option value="Environment">Environment</option>
+      <option value="Medical" >Medical</option>
+    </select>
+    </div>
+    <input type="button"  value="Search" class="btn btn-primary" onclick="let select2=document.getElementById('select2').value; searchByCategory(select2);" >
+ 
+
          <div id="data"></div>
 
     <script>
@@ -48,6 +60,35 @@
 function searchByOrganizer(organizer){
             //call GET API to get a list of Concerts
             fetch("http://localhost:3060/api/search/organizer/"+organizer)
+              .then(response => response.json())
+              .then(data => {
+
+                const dataDiv=document.getElementById('data');
+                dataDiv.innerHTML="";
+
+                if(data.length>0){
+                  data.forEach( fundraiser => {
+                      const newP=document.createElement("p");
+                      newP.textContent=`Concert: ${fundraiser.FUNDRAISER_ID}, Location: ${fundraiser.ORGANIZER}`;
+
+                      dataDiv.appendChild(newP);
+                  });
+
+                }
+                else{
+                  dataDiv.textContent="No concert data";
+                }
+              })
+              .catch(error=>{
+                console.error("Error fecthing data",error);
+                document.getElementById('data').textContent="Failed to load data";
+              });
+            }
+
+
+        function searchByCategory(category){
+            //call GET API to get a list of Concerts
+            fetch("http://localhost:3060/api/search/category/"+category)
               .then(response => response.json())
               .then(data => {
 
