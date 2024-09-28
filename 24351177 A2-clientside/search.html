@@ -69,11 +69,85 @@
 
       </label>
     </div>
-    <button type="submit" class="btn btn-primary">Search</button>
+    <button type="submit" class="btn btn-primary" onclick>Search</button>
   </form>
 </div>
 
+         <div id="data"></div>
 
+// Function for search
+function performSearch() {
+    const organizer = document.querySelector('select[name="organizer"]').value;
+    const city = document.querySelector('select[name="city"]').value;
+    const category = document.querySelector('input[name="category"]:checked').value;
+
+    // Check if at least one criterion is selected
+    if (!organizer && !city && !category) {
+        alert('Please select at least one search criterion.');
+        return;
+    }
+
+    const promises = []; // Array to hold API call promises
+
+    // Call API for Organizer if selected
+    if (organizer) {
+        promises.push(
+            fetch(`http://localhost:3060/api/FUNDRAISER/organizer/${organizer}`)
+                .then(response => response.json())
+        );
+    }
+
+    // Call API for City if selected
+    if (city) {
+        promises.push(
+            fetch(`http://localhost:3060/api/FUNDRAISER/${city}`)
+                .then(response => response.json())
+        );
+    }
+
+    // Call API for Category if selected
+    promises.push(
+        fetch(`http://localhost:3060/api/FUNDRAISER/category/${category}`)
+            .then(response => response.json())
+    );
+
+    // Wait for all API calls to finish
+    Promise.all(promises)
+        .then(results => {
+            const dataDiv = document.getElementById('data');
+            dataDiv.innerHTML = ""; // Clear existing content
+
+            // Create a Set to handle unique fundraisers
+            const uniqueFundraisers = new Set();
+
+            // Loop through the results to populate unique fundraisers
+            results.forEach(records => {
+                if (Array.isArray(records)) {
+                    records.forEach(fundraiser => uniqueFundraisers.add(JSON.stringify(fundraiser)));
+                }
+            });
+
+            // Display results
+            if (uniqueFundraisers.size > 0) {
+                uniqueFundraisers.forEach(fundraiser => {
+                    const parsedFundraiser = JSON.parse(fundraiser);
+                    const fundraiserDiv = document.createElement("div");
+                    fundraiserDiv.innerHTML = `
+                        <h5>${parsedFundraiser.ORGANIZER} - ${parsedFundraiser.CITY}</h5>
+                        <p>Fundraiser ID: ${parsedFundraiser.FUNDRAISER_ID}</p>
+                        <a href="/fundraiser?id=${parsedFundraiser.FUNDRAISER_ID}" class="btn btn-link">View Details</a>
+                    `;
+                    dataDiv.appendChild(fundraiserDiv);
+                });
+            } else {
+                dataDiv.innerHTML = '<strong style="color: red;">No fundraisers found.</strong>';
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching data:", error);
+            document.getElementById('data').innerHTML = '<strong style="color: red;">No fundraisers found.</strong>';
+        });
+}
 
 
 
