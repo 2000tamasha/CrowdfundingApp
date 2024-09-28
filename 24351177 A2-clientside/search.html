@@ -47,7 +47,7 @@
 
 function searchByOrganizer(organizer){
             //call GET API to get a list of Concerts
-            fetch("http://localhost:3060/api/search/organizer"+organizer)
+            fetch("http://localhost:3060/api/search/organizer/"+organizer)
               .then(response => response.json())
               .then(data => {
 
