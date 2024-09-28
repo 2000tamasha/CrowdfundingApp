@@ -53,17 +53,17 @@
 
  <script>
         function searchByCategory() {
-            // Get the selected radio button
-            const selectedCategory = document.querySelector('input[name="category"]:checked');
+            // Getting the selected radio button
+            const Categoryselect = document.querySelector('input[name="category"]:checked');
 
-            // Check if a category is selected
+            // Check whether the category is selected
             if (!selectedCategory) {
                 document.getElementById('data').textContent = "Please select a category.";
                 return;
             }
 
             // Get the value of the selected category
-            const category = selectedCategory.value;
+            const category = Categoryselect.value;
            
             fetch("http://localhost:3060/api/search/category/" + category)
               .then(response => response.json())
@@ -74,11 +74,12 @@
                   if (data.length > 0) {
                       data.forEach(fundraiser => {
                           const newP = document.createElement("p");
-                          newP.textContent = `Fundraiser ID: ${fundraiser.FUNDRAISER_ID}, Organizer: ${fundraiser.ORGANIZER}`;
+                          newP.textContent = `Fundraiser ID: <a href="/fundraiser/${fundraiser.FUNDRAISER_ID}">${fundraiser.FUNDRAISER_ID}</a>, Organizer: ${fundraiser.ORGANIZER}`;
+                          
                           dataDiv.appendChild(newP);
                       });
                   } else {
-                      dataDiv.textContent = "No fundraiser data available.";
+                      dataDiv.textContent = "No fundraiser data for selected category.";
                   }
               })
               .catch(error => {
