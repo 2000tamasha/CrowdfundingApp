@@ -45,14 +45,14 @@
             </div>
         
     </div>
-    <input type="button"  value="Search" class="btn btn-primary" onclick="let category=document.getElementById('category').value; searchByCategory(category);" >
+    <input type="button"  value="Search" class="btn btn-primary" onclick="searchByCategory()" >
  
 </div>
          <div id="data"></div>
 
     <script>
 
-        function searchByCategory(category){
+        function searchByCategory(){
             //call GET API to get a list of Concerts
             fetch("http://localhost:3060/api/search/category/"+category)
               .then(response => response.json())
