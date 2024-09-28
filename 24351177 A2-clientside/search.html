@@ -69,14 +69,14 @@
 
       </label>
     </div>
-    <button type="submit" class="btn btn-primary" onclick>Search</button>
+    <button type="submit" class="btn btn-primary" onclick="SearchbyCriteria">Search</button>
   </form>
 </div>
 
          <div id="data"></div>
 
 // Function for search
-function performSearch() {
+function SearchbyCriteria() {
     const organizer = document.querySelector('select[name="select1"]').value;
     const city = document.querySelector('select[name="select2"]').value;
     const category = document.querySelector('input[name="radio"]:checked').value;
@@ -92,7 +92,7 @@ function performSearch() {
     // Call API for Organizer if selected
     if (organizer) {
         promises.push(
-            fetch(`http://localhost:3060/api/FUNDRAISER/organizer/${organizer}`)
+            fetch(`http://localhost:3060/api/search/organizer/${organizer}`)
                 .then(response => response.json())
         );
     }
@@ -100,14 +100,14 @@ function performSearch() {
     // Call API for City if selected
     if (city) {
         promises.push(
-            fetch(`http://localhost:3060/api/FUNDRAISER/${city}`)
+            fetch(`http://localhost:3060/api/search/city/${city}`)
                 .then(response => response.json())
         );
     }
 
     // Call API for Category if selected
     promises.push(
-        fetch(`http://localhost:3060/api/FUNDRAISER/category/${category}`)
+        fetch(`http://localhost:3060/api/search/category/${category}`)
             .then(response => response.json())
     );
 
@@ -117,29 +117,20 @@ function performSearch() {
             const dataDiv = document.getElementById('data');
             dataDiv.innerHTML = ""; // Clear existing content
 
-            // Create a Set to handle unique fundraisers
-            const uniqueFundraisers = new Set();
+    
+    if(data.length>0){
+                  data.forEach( concert => {
+                      const newP=document.createElement("p");
+                      newP.textContent=`Concert: ${FUNDRAISER.FUNDRAISER_ID}, Location: ${FUNDRAISER.ORGANIZER}`;
 
-            // Loop through the results to populate unique fundraisers
-            results.forEach(records => {
-                if (Array.isArray(records)) {
-                    records.forEach(fundraiser => uniqueFundraisers.add(JSON.stringify(fundraiser)));
+                      dataDiv.appendChild(newP);
+                  });
+
                 }
-            });
 
-            // Display results
-            if (uniqueFundraisers.size > 0) {
-                uniqueFundraisers.forEach(fundraiser => {
-                    const parsedFundraiser = JSON.parse(fundraiser);
-                    const fundraiserDiv = document.createElement("div");
-                    fundraiserDiv.innerHTML = `
-                        <h5>${parsedFundraiser.ORGANIZER} - ${parsedFundraiser.CITY}</h5>
-                        <p>Fundraiser ID: ${parsedFundraiser.FUNDRAISER_ID}</p>
-                        <a href="/fundraiser?id=${parsedFundraiser.FUNDRAISER_ID}" class="btn btn-link">View Details</a>
-                    `;
-                    dataDiv.appendChild(fundraiserDiv);
-                });
-            } else {
+    
+    
+    else {
                 dataDiv.innerHTML = '<strong style="color: red;">No fundraisers found.</strong>';
             }
         })
