@@ -33,12 +33,14 @@
    
  
    <!-- Active Fundraisers -->
-    <section class="fundraisers">
+    <div class="container pt-5 ">
         <h2>Active Fundraisers</h2>
         <div id="data"> </div>
 
+        
+
       <script>
-        //call GET API to get a list of Concerts
+        //call GET API to get a list of fundraisers
         fetch("http://localhost:3060/api/FUNDRAISER/active") 
           .then(response => response.json())
           .then(data => {
@@ -66,7 +68,7 @@
 
       </script>
         
-    </section>
+</div>
 
              
 
