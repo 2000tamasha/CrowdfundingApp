@@ -45,6 +45,7 @@
         </div>
 
         <input type="button" value="Search" class="btn btn-primary" onclick="searchByCategory();">
+        <button class="btn btn-primary" onclick="clear()">Clear</button>
     </div>
 
 
@@ -89,6 +90,14 @@
                   document.getElementById('data').textContent = "Failed to load data.";
               });
         }
+
+
+     function clear(){
+         const radiobtns = document.querySelectorAll('input[type="radio"]');
+        radiobtns.forEach(radio => {
+        radio.checked = false; // Uncheck the radio button
+    });
+     }
     </script>
 
 
