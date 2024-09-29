@@ -35,7 +35,7 @@
     // Get the ID from the query string
     const params = new URLSearchParams(window.location.search);
     const fundID = params.get('id');
-    const imagePath = getImage(fundraiser.FUNDRAISER_ID)   
+    
     
     if (fundID) {
         fetch(`http://localhost:3060/api/FUNDRAISER/${fundID}`)
@@ -44,6 +44,7 @@
                 if (data.length > 0) {
                    
                     const fundraiser = data[0];
+                      const imagePath = getImage(fundraiser.FUNDRAISER_ID);
 
                     // Display the fundraiser info
                     document.getElementById('data').innerHTML = 
