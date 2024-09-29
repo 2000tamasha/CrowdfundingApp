@@ -8,6 +8,9 @@
 <body>
 
 <h1>Fundraiser Details</h1>
+   <input type="text" id="txtID" placeholder="Enter ID" required>
+      <input type="button" value="Search" onclick="let txtID=document.getElementById('txtID').value; searchByID(txtID);">
+ 
 <div id="data">
     <!-- Fundraiser details will be displayed here -->
 </div>
@@ -15,32 +18,33 @@
 
 
  <script>
-        //call GET API to get a list of fundraisers
-        fetch("http://localhost:3060/api/FUNDRAISER/active") 
-          .then(response => response.json())
-          .then(data => {
-            
-            const dataDiv=document.getElementById('data');
-            dataDiv.innerHTML="";
+        function searchByID(id){
+            //call GET API to get a list of Concerts
+            fetch("http://localhost:3060/api/FUNDRAISER/"+id)
+              .then(response => response.json())
+              .then(data => {
 
-            if(data.length>0){
-              data.forEach( active => {
-                  const newP=document.createElement("p");
-                  newP.textContent=`Fundraiser ID: ${active.FUNDRAISER_ID}, Organizer: ${active.ORGANIZER} , Caption: ${active.CAPTION}, Target funding: ${active.TARGET_FUNDING},Currrent funding: ${active.CURRENT_FUNDING}, City: ${active.CITY}, Status:${active.ACTIVE}`;
+                const dataDiv=document.getElementById('data');
+                dataDiv.innerHTML="";
 
-                  dataDiv.appendChild(newP);
+                if(data.length>0){
+                  data.forEach( fundraiser => {
+                      const newP=document.createElement("p");
+                      newP.textContent=`Concert: ${fundraiser.FUNDRAISER_ID}, Location: ${fundraiser.ORGANIZER}`;
+
+                      dataDiv.appendChild(newP);
+                  });
+
+                }
+                else{
+                  dataDiv.textContent="No concert data";
+                }
+              })
+              .catch(error=>{
+                console.error("Error fecthing data",error);
+                document.getElementById('data').textContent="Failed to load data";
               });
-
             }
-            else{
-              dataDiv.textContent="No data";
-            }
-          })
-          .catch(error=>{
-            console.error("Error fecthing data",error);
-            document.getElementById('data').textContent="Failed to load data";
-          });
-  
 </script> 
 
 </body>
