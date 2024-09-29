@@ -48,8 +48,17 @@
 
                     // Display the fundraiser info
                     document.getElementById('data').innerHTML = 
+                        
                         `<img src="${imagePath}" style="width:300px;height:auto;">
-                        Fundraiser ID: ${fundraiser.FUNDRAISER_ID}, Organizer: ${fundraiser.ORGANIZER}`;
+                        
+                        Fundraiser ID: ${fundraiser.FUNDRAISER_ID}, 
+                        Organizer: ${fundraiser.ORGANIZER},
+                       Caption: ${fundraiser.CAPTION},
+                        Target Funding: ${fundraiser.TARGET_FUNDING},
+                        Current Funding: ${fundraiser.CURRENT_FUNDING},
+                        City: ${fundraiser.CITY},
+                        Status: ${fundraiser.ACTIVE}
+                        `;
                 } else {
                     // No fundraiser found event
                     document.getElementById('data').textContent = "No fundraiser found with the ID provided.";
