@@ -53,7 +53,14 @@
             if(data.length>0){
               data.forEach( active => {
                   const newP=document.createElement("p");
-                  newP.textContent=`Fundraiser ID: ${active.FUNDRAISER_ID}, Organizer: ${active.ORGANIZER} , Caption: ${active.CAPTION}, Target funding: ${active.TARGET_FUNDING},Currrent funding: ${active.CURRENT_FUNDING}, City: ${active.CITY}, Status:${active.ACTIVE}`;
+                  newP.innerHTML=`<strong>Fundraiser ID:</strong> ${active.FUNDRAISER_ID}<br>
+                  <strong>Organizer:</strong> ${active.ORGANIZER} <br>
+                  <strong>Caption:</strong> ${active.CAPTION} <br>
+                  <strong>Target funding:</strong> ${active.TARGET_FUNDING}<br>
+                  <strong>Currrent funding:</strong> ${active.CURRENT_FUNDING} <br>
+                  <strong>City:</strong> ${active.CITY} <br>
+                  <strong>Status:</strong>${active.ACTIVE}`;<br>
+                  <hr>
 
                   dataDiv.appendChild(newP);
               });
