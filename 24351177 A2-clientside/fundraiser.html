@@ -48,17 +48,19 @@
 
                     // Display the fundraiser info
                     document.getElementById('data').innerHTML = 
-                        
-                        `<img src="${imagePath}" style="width:300px;height:auto;">
-                        
-                        Fundraiser ID: ${fundraiser.FUNDRAISER_ID}, 
-                        Organizer: ${fundraiser.ORGANIZER},
-                       Caption: ${fundraiser.CAPTION},
-                        Target Funding: ${fundraiser.TARGET_FUNDING},
-                        Current Funding: ${fundraiser.CURRENT_FUNDING},
-                        City: ${fundraiser.CITY},
-                        Status: ${fundraiser.ACTIVE}
-                        `;
+                        ` <div class="card" style="width: 18rem; margin: auto;">
+                                    <img src="${imagePath}" class="card-img-top" style="width:300px;height:auto;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Fundraiser ID: ${fundraiser.FUNDRAISER_ID}</h5> <br>
+                                        <p class="card-text">Organizer: ${fundraiser.ORGANIZER}</p><br>
+                                         <p class="card-text">Caption: ${fundraiser.CAPTION}</p><br>
+                                         <p class="card-text">Target Funding: ${fundraiser.TARGET_FUNDING}</p><br>
+                                         <p class="card-text">Current Funding: ${fundraiser.CURRENT_FUNDING}</p><br>
+                                          <p class="card-text">City: ${fundraiser.CITY}</p><br>
+                                          <p class="card-text">Status: ${fundraiser.ACTIVE}</p>
+                                    </div>
+                                </div>`;
+                  
                 } else {
                     // No fundraiser found event
                     document.getElementById('data').textContent = "No fundraiser found with the ID provided.";
