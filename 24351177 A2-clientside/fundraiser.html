@@ -57,7 +57,9 @@
                                          <p class="card-text">Target Funding: ${fundraiser.TARGET_FUNDING}</p><br>
                                          <p class="card-text">Current Funding: ${fundraiser.CURRENT_FUNDING}</p><br>
                                           <p class="card-text">City: ${fundraiser.CITY}</p><br>
-                                          <p class="card-text">Status: ${fundraiser.ACTIVE}</p>
+                                          <p class="card-text">Status: ${fundraiser.ACTIVE}</p><br>
+                                          <button class ="btn btn-success" value ="Donate" onclick="displayMessage">
+                                          
                                     </div>
                                 </div>`;
                   
@@ -89,6 +91,9 @@ function getImage(fundID) {
     // Return the corresponding image path 
     return imageMap[fundID]; 
 }
+        function displayMessage{
+            alert(This feature is under contruction);
+        }
 
     </script>
 
