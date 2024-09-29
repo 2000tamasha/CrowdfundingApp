@@ -74,7 +74,7 @@
                   if (data.length > 0) {
                       data.forEach(fundraiser => {
     const newP = document.createElement("p");
-    newP.innerHTML = `Fundraiser ID: <a href="/fundraiser.html?id">${fundraiser.FUNDRAISER_ID}</a>, Organizer: ${fundraiser.ORGANIZER}`;
+    newP.innerHTML = `Fundraiser ID: <a href="/fundraiser.html">${fundraiser.FUNDRAISER_ID}</a>, Organizer: ${fundraiser.ORGANIZER}`;
     dataDiv.appendChild(newP);
 });
                   } else {
