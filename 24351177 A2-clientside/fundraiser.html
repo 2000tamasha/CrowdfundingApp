@@ -1,1 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundraiser Details</title>
+</head>
+<body>
+
+<h1>Fundraiser Details</h1>
+<div id="fundraiser-details">
+    <!-- Fundraiser details will be displayed here -->
+</div>
+
+<script>
+
+// Extract the query string parameter (id) from the URL
+const urlParams = new URLSearchParams(window.location.search);
+const fundraiserId = urlParams.get('id'); // Get the id value
+
+// Display the fundraiser ID for testing
+console.log(fundraiserId);
+
+// Now you can fetch the fundraiser details from the server using the id
+// This can be done via an API call (if you have a backend), or it could be simulated with local data
+if (fundraiserId) {
+    // Fetch data from an API or use dummy data for now
+    fetch(`http://localhost:3060/fundraiser/${fundraiserId}`)
+      .then(response => response.json())
+      .then(data => {
+          // Assuming the API returns data in the following structure:
+          // Display the details on the page
+          document.getElementById('fundraiser-details').innerHTML = `
+              <h2>Fundraiser ID: ${data[0].FUNDRAISER_ID}</h2>
+              <p>Organizer: ${data[0].ORGANIZER}</p>
+              <p>Description: ${data[0].DESCRIPTION}</p>
+              <button onclick="alert('This feature is under construction')">Donate</button>
+          `;
+      })
+      .catch(error => console.error('Error fetching fundraiser details:', error));
+}
+
+  
+</script> 
+
+</body>
+</html>
 
