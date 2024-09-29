@@ -82,12 +82,12 @@
                   if (data.length > 0) {
                       data.forEach(fundraiser => {
     const newP = document.createElement("p");
-    newP.innerHTML = `Fundraiser ID: <a href="fundraiser.html?id=${fundraiser.FUNDRAISER_ID}">${fundraiser.FUNDRAISER_ID}</a>, Organizer: ${fundraiser.ORGANIZER}, <strong>Caption:</strong> ${fundraiser.CAPTION}`;
+    newP.innerHTML = `<strong>Fundraiser ID:</strong> <a href="fundraiser.html?id=${fundraiser.FUNDRAISER_ID}">${fundraiser.FUNDRAISER_ID}</a>, <strong>Organizer:</strong> ${fundraiser.ORGANIZER}, <strong>Caption:</strong> ${fundraiser.CAPTION}`;
                           
     dataDiv.appendChild(newP);
 });
                   } else {
-                      dataDiv.textContent = "No fundraiser data for selected category.";
+                      dataDiv.textContent = "<strong style='color: red;'>No fundraiser for selected category , please select another category.</strong>";
                   }
               })
               .catch(error => {
