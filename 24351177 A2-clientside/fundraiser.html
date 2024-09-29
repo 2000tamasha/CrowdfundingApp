@@ -33,12 +33,15 @@ window.onload = function() {
     newP.innerHTML = `Fundraiser ID: <a href="fundraiser.html?id=${fundraiser.FUNDRAISER_ID}">Click here</a>, Organizer: ${fundraiser.ORGANIZER}`;
     dataDiv.appendChild(newP);
 });
-            .catch(error => {
-                console.error("Error fetching fundraiser details", error);
-                document.getElementById('data').textContent = "Failed to load fundraiser details.";
-            });
-    }
-};
+           } else {
+                      dataDiv.textContent = "No fundraiser data for selected category.";
+                  }
+              })
+              .catch(error => {
+                  console.error("Error fetching data", error);
+                  document.getElementById('data').textContent = "Failed to load data.";
+              });
+        }
     </script>
 
 
