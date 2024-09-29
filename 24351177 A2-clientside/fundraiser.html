@@ -25,10 +25,14 @@ window.onload = function() {
         fetch(`http://localhost:3060/api/FUNDRAISER/${fundraiserId}`)
             .then(response => response.json())
             .then(data => {
-                // Display the fundraiser details on the page
-                document.getElementById('data').innerHTML = 
-                    `Fundraiser ID: ${data.FUNDRAISER_ID}, Organizer: ${data.ORGANIZER}`;
-            })
+             
+
+                  if (data.length > 0) {
+                      data.forEach(fundraiser => {
+    const newP = document.createElement("p");
+    newP.innerHTML = `Fundraiser ID: <a href="fundraiser.html?id=${fundraiser.FUNDRAISER_ID}">Click here</a>, Organizer: ${fundraiser.ORGANIZER}`;
+    dataDiv.appendChild(newP);
+});
             .catch(error => {
                 console.error("Error fetching fundraiser details", error);
                 document.getElementById('data').textContent = "Failed to load fundraiser details.";
@@ -36,6 +40,11 @@ window.onload = function() {
     }
 };
     </script>
+
+
+    
+
+
 
 </body>
 </html>
