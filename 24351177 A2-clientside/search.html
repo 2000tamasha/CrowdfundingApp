@@ -87,7 +87,7 @@
     dataDiv.appendChild(newP);
 });
                   } else {
-                      dataDiv.textContent = "<strong style='color: red;'>No fundraiser for selected category , please select another category.</strong>";
+                      dataDiv.innerHTML = "<strong style='color: red;'>No fundraiser for selected category , please select another category.</strong>";
                   }
               })
               .catch(error => {
