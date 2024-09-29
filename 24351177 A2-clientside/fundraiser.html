@@ -31,7 +31,7 @@ window.onload = function() {
             })
             .catch(error => {
                 console.error("Error fetching fundraiser details", error);
-                document.getElementById('fundraiser-details').textContent = "Failed to load fundraiser details.";
+                document.getElementById('data').textContent = "Failed to load fundraiser details.";
             });
     }
 };
