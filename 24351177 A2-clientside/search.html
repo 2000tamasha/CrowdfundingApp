@@ -45,7 +45,7 @@
         </div>
 
         <input type="button" value="Search" class="btn btn-primary" onclick="searchByCategory();">
-        <button class="btn btn-primary" onclick="clear()">Clear</button>
+        <button class="btn btn-primary" onclick="clearradio();">Clear</button>
     </div>
 
 
@@ -92,7 +92,7 @@
         }
 
 
-     function clear(){
+     function clearradio(){
          const radiobtns = document.querySelectorAll('input[type="radio"]');
         radiobtns.forEach(radio => {
         radio.checked = false; // Uncheck the radio button
