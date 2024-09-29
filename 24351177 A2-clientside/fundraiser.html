@@ -8,44 +8,34 @@
 <body>
 
 <h1>Fundraiser Details</h1>
-   <input type="text" id="txtID" placeholder="Enter ID" required>
-      <input type="button" value="Search" onclick="let txtID=document.getElementById('txtID').value; searchByID(txtID);">
+ 
  
 <div id="data">
     <!-- Fundraiser details will be displayed here -->
 </div>
 
+    <script>
 
-
- <script>
-        function searchByID(id){
-            //call GET API to get a list of Concerts
-            fetch("http://localhost:3060/api/FUNDRAISER/"+id)
-              .then(response => response.json())
-              .then(data => {
-
-                const dataDiv=document.getElementById('data');
-                dataDiv.innerHTML="";
-
-                if(data.length>0){
-                  data.forEach( fundraiser => {
-                      const newP=document.createElement("p");
-                      newP.textContent=`Concert: ${fundraiser.FUNDRAISER_ID}, Location: ${fundraiser.ORGANIZER}`;
-
-                      dataDiv.appendChild(newP);
-                  });
-
-                }
-                else{
-                  dataDiv.textContent="No concert data";
-                }
-              })
-              .catch(error=>{
-                console.error("Error fecthing data",error);
-                document.getElementById('data').textContent="Failed to load data";
-              });
-            }
-</script> 
+window.onload = function() {
+    // Get the ID from the query string
+    const params = new URLSearchParams(window.location.search);
+    const fundraiserId = params.get('id');
+    
+    if (fundraiserId) {
+        fetch(`http://localhost:3060/api/FUNDRAISER/${fundraiserId}`)
+            .then(response => response.json())
+            .then(data => {
+                // Display the fundraiser details on the page
+                document.getElementById('data').innerHTML = 
+                    `Fundraiser ID: ${data.FUNDRAISER_ID}, Organizer: ${data.ORGANIZER}`;
+            })
+            .catch(error => {
+                console.error("Error fetching fundraiser details", error);
+                document.getElementById('fundraiser-details').textContent = "Failed to load fundraiser details.";
+            });
+    }
+};
+    </script>
 
 </body>
 </html>
