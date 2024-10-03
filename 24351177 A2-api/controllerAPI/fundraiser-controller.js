@@ -63,7 +63,6 @@ router.get("/funds/:id", (req, res) => {
     const fundQuery = `
         SELECT 
             FUNDRAISER.*,
-            CATEGORY_ID,
             NAME
         FROM FUNDRAISER 
         INNER JOIN CATEGORY ON FUNDRAISER.CATEGORY_ID = CATEGORY.CATEGORY_ID
