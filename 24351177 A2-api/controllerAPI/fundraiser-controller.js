@@ -77,7 +77,7 @@ router.get("/funds/:id", (req, res) => {
         WHERE DONATION.FUNDRAISER_ID = ?`;
 
     // Execute funraiser query
-    connection.query(fundraiserQuery, [fundId], (fundraiserErr, fundResult) => {
+    connection.query(fundQuery, [fundId], (fundraiserErr, fundResult) => {
         if (fundraiserErr) {
             console.error("Error retrieving fundraiser details", fundraiserErr);
             return res.status(500).send("Error retrieving fundraiser details");
