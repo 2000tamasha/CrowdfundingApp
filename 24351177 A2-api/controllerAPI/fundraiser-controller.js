@@ -96,7 +96,7 @@ router.get("/funds/:id", (req, res) => {
 
             // Combine fundraiser details with its related donations
             const response = {
-                fundraiser: fundraiserResult[0], // The fundraiser info
+                fundraiser: fundResult[0], // The fundraiser info
                 donations: donationResult         // Array of donations for specific fundraiser
             };
 
