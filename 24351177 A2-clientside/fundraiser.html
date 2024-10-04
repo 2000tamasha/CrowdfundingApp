@@ -38,7 +38,7 @@
     
     
     if (fundID) {
-        fetch(`http://localhost:3060/api/FUNDRAISER/${fundID}`)
+        fetch(`http://localhost:3060/api/funds/${fundID}`)
             .then(response => response.json())
             .then(data => {
                 if (data.length > 0) {
@@ -58,6 +58,10 @@
                                          <p class="card-text">Current Funding: ${fundraiser.CURRENT_FUNDING}</p><br>
                                           <p class="card-text">City: ${fundraiser.CITY}</p><br>
                                           <p class="card-text">Status: ${fundraiser.ACTIVE}</p><br>
+                                         <p class="card-text">Donation ID: ${donation.DONATION_ID}</p>
+                                        <p class="card-text">Date: ${donation.DATE}</p>
+                                        <p class="card-text">Amount: ${donation.AMOUNT}</p>
+                                        <p class="card-text">Giver: ${donation.GIVER}</p>
                                           <button class ="btn btn-success"  onclick="displayMessage()">Donate</button>
                                           
                                     </div>
