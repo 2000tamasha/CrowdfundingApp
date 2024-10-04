@@ -171,7 +171,7 @@ router.delete("/:id", (req, res) => {
 
         if (numOfDonations > 0) {
             // Fundraiser has donations, cannot delete
-            return res.status(400).send({ delete: "failed", message: "Cannot delete fundraiser with existing donations" });
+            return res.status(400).send({ delete: "failed", message: "Cannot delete a fundraiser with existing donations" });
         }
 
         // If no donations exist, proceed to delete the fundraiser
