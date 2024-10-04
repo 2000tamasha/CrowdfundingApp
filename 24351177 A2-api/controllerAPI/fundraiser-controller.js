@@ -119,7 +119,7 @@ router.post("/", (req, res)=>{
         var CITY = req.body.CITY;
         var ACTIVE = req.body.ACTIVE;
         var CATEGORY_ID = req.body.CATEGORY_ID;
-	connection.query("INSERT INTO FUNDRAISER VALUES('"+FUNDRAISER_ID+"','"+ORGANIZER+"','"+CAPTION+"','"+TARGET_FUNDING+"',"+CURRENT_FUNDING+",'"+CITY+"','"+ACTIVE+"',"+CATEGORY_ID+")",  
+	connection.query("INSERT INTO FUNDRAISER VALUES('"+FUNDRAISER_ID+"','"+ORGANIZER+"','"+CAPTION+"','"+TARGET_FUNDING+"',"+CURRENT_FUNDING+",'"+CITY+"','"+ACTIVE+"','"+CATEGORY_ID+"')",  
 	(err, result)=> {
 		 if (err){
 			 console.error("Error while retrieve the data" + err);
