@@ -148,10 +148,9 @@ router.put("/:id", (req, res)=>{
 		 }else{
 			 res.send({update:"success"});
 		 }
-	}
-}
-);
-});
+	})
+})
+
 
 
 
