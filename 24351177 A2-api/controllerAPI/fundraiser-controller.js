@@ -132,7 +132,24 @@ router.post("/", (req, res)=>{
 
 
 
-
+router.put("/", (req, res)=>{
+        var FUNDRAISER_ID = req.body.FUNDRAISER_ID;
+	var ORGANIZER = req.body.ORGANIZER;
+	var CAPTION = req.body.CAPTION;
+        var TARGET_FUNDING = req.body.TARGET_FUNDING;
+        var CURRENT_FUNDING = req.body.CURRENT_FUNDING;
+        var CITY = req.body.CITY;
+        var ACTIVE = req.body.ACTIVE;
+        var CATEGORY_ID = req.body.CATEGORY_ID;
+	connection.query("UPDATE FUNDRAISER SET ORGANIZER='"+ORGANIZER+"', CAPTION='"+CAPTION+"',TARGET_FUNDING='"+TARGET_FUNDING+"',CURRENT_FUNDING='"+CURRENT_FUNDING+"',CITY='"+CITY+"',ACTIVE='"+ACTIVE+"',CATEGORY_ID='"+CATGORY_ID+"' where FUNDRAISER_ID="+FUNDRAISER_ID, 
+	(err, result)=> {
+		 if (err){
+			 console.error("Error while Updating the data" + err);
+		 }else{
+			 res.send({update:"success"});
+		 }
+	})
+})
 
 
 
