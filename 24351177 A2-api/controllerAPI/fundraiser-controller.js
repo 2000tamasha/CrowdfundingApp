@@ -133,7 +133,7 @@ router.post("/", (req, res)=>{
 
 
 router.put("/", (req, res)=>{
-        var FUNDRAISER_ID = req.body.FUNDRAISER_ID;
+        var FUNDRAISER_ID = req.params.id;
 	var ORGANIZER = req.body.ORGANIZER;
 	var CAPTION = req.body.CAPTION;
         var TARGET_FUNDING = req.body.TARGET_FUNDING;
@@ -150,6 +150,49 @@ router.put("/", (req, res)=>{
 		 }
 	})
 })
+
+
+
+//delete fundraisers without donations (Assignment 3)
+router.delete("/:id", (req, res) => {
+    var FUNDRAISER_ID = req.params.id;
+
+    // check if fundraiser has got donations
+    const donationCheckQuery = "SELECT COUNT(*) FROM DONATION WHERE FUNDRAISER_ID = ?";
+
+    connection.query(donationCheckQuery, [FUNDRAISER_ID], (err, result) => {
+        if (err) {
+            console.error("Error while checking donations: " + err);
+            return res.status(500).send({ delete: "failed", error: err });
+        }
+
+        const numOfDonations = result[0].numOfDonations;
+
+        if (numOfDonations > 0) {
+            // Fundraiser has donations, cannot delete
+            return res.status(400).send({ delete: "failed", message: "Cannot delete fundraiser with existing donations" });
+        }
+
+        // If no donations exist, proceed to delete the fundraiser
+        const deleteFundQuery = "DELETE FROM FUNDRAISER WHERE FUNDRAISER_ID = ?";
+
+        connection.query(deleteFundQuery, [FUNDRAISER_ID], (err, result) => {
+            if (err) {
+                console.error("Error while deleting the fundraiser: " + err);
+                return res.status(500).send({ delete: "failed", error: err });
+            }
+
+            if (result.affectedRows === 0) {
+                // Fundraiser not found
+                return res.status(404).send({ delete: "failed", message: "Fundraiser not found" });
+            }
+
+            // Fundraiser deleted successfully 
+            res.send({ delete: "success" });
+        });
+    });
+});
+
 
 
 
