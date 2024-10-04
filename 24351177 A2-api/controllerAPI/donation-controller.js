@@ -7,7 +7,29 @@ var router = express.Router();
 
 
 
-//post for inserting donations
+
+
+//Get for viewing donations (optional)
+
+router.get("/", (req, res)=>{
+	connection.query("select * from DONATION", (err, records,fields)=> {
+		 if (err){
+			 console.error("Error while retrieve the data");
+		 }else{
+			 res.send(records);
+		 }
+	})
+})
+
+
+
+
+
+
+
+
+
+//post for inserting donations(Assignement 3)
 router.post("/", (req, res)=>{
 	var DONATION_ID = req.body.DONATION_ID;
 	var DATE = req.body.DATE;
