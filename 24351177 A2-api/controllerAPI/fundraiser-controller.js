@@ -159,7 +159,7 @@ router.delete("/:id", (req, res) => {
     var FUNDRAISER_ID = req.params.id;
 
     // check if fundraiser has got donations
-    const donationCheckQuery = "SELECT COUNT(*) FROM DONATION WHERE FUNDRAISER_ID = ?";
+    const donationCheckQuery = "SELECT COUNT(*) AS numOfDonations FROM DONATION WHERE FUNDRAISER_ID = ?";
 
     connection.query(donationCheckQuery, [FUNDRAISER_ID], (err, result) => {
         if (err) {
