@@ -132,7 +132,7 @@ router.post("/", (req, res)=>{
 
 
 
-router.put("/", (req, res)=>{
+router.put("/id", (req, res)=>{
         var FUNDRAISER_ID = req.params.id;
 	var ORGANIZER = req.body.ORGANIZER;
 	var CAPTION = req.body.CAPTION;
