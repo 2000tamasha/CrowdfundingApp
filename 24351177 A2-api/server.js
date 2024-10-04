@@ -1,7 +1,11 @@
 var express = require('express');
 var app = express();
+var bodyparser = require('body-parser');
 var cors = require('cors'); // Import CORS package
 app.use(cors());
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended:false}));
+
 
 var fundraiserAPI = require('./controllerAPI/fundraiser-controller');
 var searchAPI = require('./controllerAPI/search-controller');
