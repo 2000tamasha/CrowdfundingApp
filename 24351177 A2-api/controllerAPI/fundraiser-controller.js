@@ -76,9 +76,9 @@ router.get("/funds/:id", (req, res) => {
         WHERE DONATION.FUNDRAISER_ID = ?`;
 
     // Execute funraiser query
-    connection.query(fundQuery, [fundId], (fundraiserErr, fundResult) => {
-        if (fundraiserErr) {
-            console.error("Error retrieving fundraiser details", fundraiserErr);
+    connection.query(fundQuery, [fundId], (fundraiserError, fundResult) => {
+        if (fundraiserError) {
+            console.error("Error retrieving fundraiser details", fundraiserError);
             return res.status(500).send("Error retrieving fundraiser details");
         }
 
@@ -88,9 +88,9 @@ router.get("/funds/:id", (req, res) => {
         }
 
         // Execute donation query
-        connection.query(donationQuery, [fundId], (donationErr, donationResult) => {
-            if (donationErr) {
-                console.error("Error retrieving donations", donationErr);
+        connection.query(donationQuery, [fundId], (donationError, donationResult) => {
+            if (donationError) {
+                console.error("Error retrieving donations", donationError);
                 return res.status(500).send("Error retrieving donations");
             }
 
