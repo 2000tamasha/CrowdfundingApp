@@ -16,6 +16,9 @@
     <div class="container mt-3">
         <h2>FundWorld</h2>
   <ul class="nav">
+<li class="nav-item">
+      <a class="btn-btn primary" href="admin.html">Admin</a>
+    </li>
     <li class="nav-item">
       <a class="nav-link" href="index.html">Home</a>
     </li>
@@ -26,7 +29,63 @@
 </div>
    
      
-   
+ <div class="container mt-5">
+    <h2>Add New Fundraiser</h2>
+    <form id="fundForm">
+
+        <div class="mb-3">
+            <label for="organizer" class="form-label">Fundraiser ID</label>
+            <input type="text" class="form-control" id="fundID" required>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="organizer" class="form-label">Organizer Name</label>
+            <input type="text" class="form-control" id="organizer" required>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="caption" class="form-label">Caption</label>
+            <input type="text" class="form-control" id="caption" required>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="targetFunding" class="form-label">Target Funding (AUD)</label>
+            <input type="number" class="form-control" id="targetFunding" required>
+        </div>
+
+       <div class="mb-3">
+            <label for="currentFunding" class="form-label">Current Funding (AUD)</label>
+            <input type="number" class="form-control" id="currentFunding" required>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            <input type="text" class="form-control" id="city" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <input type="text" class="form-control" id="status" required>
+        </div>
+        <button type="submit" class="btn btn-primary">SAVE</button>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+ 
  
 
 
