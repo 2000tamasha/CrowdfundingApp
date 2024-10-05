@@ -40,11 +40,7 @@
                 <label for="giverName" class="form-label"><strong>Your Name</strong></label>
                 <input type="text" class="form-control" id="name" required>
             </div>
-            <div class="mb-3">
-                <label for="giverEmail" class="form-label"><strong>Email</strong></label>
-                <input type="email" class="form-control" id="email" required>
-            </div>
-            <button type="submit" class="btn btn-success" onclick="submitDonation()">Submit my donation</button>
+               <button type="submit" class="btn btn-success" onclick="submitDonation()">Submit my donation</button>
         </form>
     </div>
 
@@ -102,7 +98,6 @@
 function submitDonation() {
             const donorAmount = parseInt(document.getElementById('amount').value);
             const donorName = document.getElementById('name').value;
-            const donoremail = document.getElementById('email').value;
             const fundID = new URLSearchParams(window.location.search).get('id'); // Get fund ID from URL
 
             // Check for minimum donation amount
