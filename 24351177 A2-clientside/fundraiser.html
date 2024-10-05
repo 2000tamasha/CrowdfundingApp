@@ -30,7 +30,7 @@
         
 <div id="data"></div>
      <h2>Donations</h2>
-        <div id="donations"></div> //To display dinations for the fundraiser
+        <div id="donations"></div> 
 
     <script>
     window.onload = function() {
@@ -39,7 +39,7 @@
             const fundID = params.get('id');
             
             if (fundID) {
-                fetch(`http://localhost:3060/api/FUNDRAISER/${fundID}`)
+                fetch(`http://localhost:3060/api/FUNDRAISER/funds/${fundID}`)
                     .then(response => response.json())
                     .then(data => {
                         // Check if fundraiser details exist
