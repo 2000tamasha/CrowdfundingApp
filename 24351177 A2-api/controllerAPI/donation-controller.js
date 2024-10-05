@@ -31,12 +31,10 @@ router.get("/", (req, res)=>{
 
 //post for inserting donations(Assignement 3)
 router.post("/", (req, res)=>{
-	var DONATION_ID = req.body.DONATION_ID;
-	var DATE = req.body.DATE;
 	var AMOUNT = req.body.AMOUNT;
         var GIVER = req.body.GIVER;
         var FUNDRAISER_ID = req.body.FUNDRAISER_ID;
-	connection.query("INSERT INTO DONATION VALUES('"+DONATION_ID+"','"+DATE+"','"+AMOUNT+"','"+GIVER+"','"+FUNDRAISER_ID+"')",  
+	connection.query("INSERT INTO DONATION VALUES('"+AMOUNT+"','"+GIVER+"','"+FUNDRAISER_ID+"')",  
 	(err, result)=> {
 		 if (err){
 			 console.error("Error while retrieve the data" + err);
