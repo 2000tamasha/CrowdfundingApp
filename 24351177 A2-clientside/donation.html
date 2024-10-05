@@ -148,7 +148,7 @@ function submitDonation() {
         console.log("Response data:", data); // Log the response data
         if (data.insert === "success") {
             alert(`Thank you for your donation`);
-            window.location.href = `fundraiser.html?id=${fundID}`; // Redirect to fundraiser page
+            window.location.href = `fundraiser.html?id=${fundID}`; // Redirecting to fundraiser page
         } else {
             alert("Failed to submit donation , Please try again.");
         }
