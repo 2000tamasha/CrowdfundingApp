@@ -71,34 +71,65 @@
             <label for="status" class="form-label">Status</label>
             <input type="text" class="form-control" id="status" required>
         </div>
-        <button type="submit" class="btn btn-primary">SAVE</button>
+        <button type="submit" class="btn btn-success">Save</button>
     </form>
 </div>
 
 
 
+<script>
+    document.getElementById('fundForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const fundID = document.getElementById('fundID').value;
+        const organizer = document.getElementById('organizer').value;
+        const caption = document.getElementById('caption').value;
+        const targetFund = document.getElementById('targetFunding').value;
+        const currentFund = document.getElementById('currentFunding').value;
+        const city = document.getElementById('city').value;
+        const active = document.getElementById('status').value;
+
+        // Prepare the donation data
+        const fundData = {
+            FUNDRAISER_ID: fundID,
+            ORGANIZER: organizer,
+            CAPTION: caption,
+            TARGET_FUNDING: targetFunding,
+            CURRENT_FUNDING: currentFunding,
+            CITY: city,
+            ACTIVE: status
+        };
+
+        // API endpoint for inserting a new fundraiser
+        const apiUrl = 'http://localhost:3060/api/FUNDRAISER';
+
+        // Make the POST request
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(fundData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to add fundraiser , Please try again');
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert('New Fundraiser added successfully!');
+            // Optionally, redirect to another page or reset the form
+            document.getElementById('fundForm').reset();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while adding the fundraiser , Please try again.');
+        });
+    });
+</script>
 
 
-
-
-
-
-
-
- 
- 
-
-
-
-
-
-
-
-
-
-
-
- 
  
     <!-- Footer --> 
     <div class="container-fluid pt-5">
