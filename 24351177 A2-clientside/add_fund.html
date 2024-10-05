@@ -68,9 +68,13 @@
         </div>
 
         <div class="mb-3">
-            <label for="status" class="form-label">Status</label>
-            <input type="text" class="form-control" id="status" required>
-        </div>
+    <label for="status" class="form-label">Status</label>
+    <select class="form-control" id="status" required>
+        <option value="" disabled selected>Select status</option>
+        <option value="Active">Active</option>
+        <option value="Suspended">Suspended</option>
+    </select>
+</div>
         <div class="mb-3">
             <label for="status" class="form-label">Category ID</label>
             <input type="text" class="form-control" id="categoryID" required>
