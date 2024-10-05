@@ -26,6 +26,11 @@ app.get("/fundraiser",(req,res)=>{
   res.sendFile(path.join(__dirname,"fundraiser.html"));
 });
 
+//route to serve donation.html
+app.get("/donation",(req,res)=>{
+  res.sendFile(path.join(__dirname,"donation.html"));
+});
+
 
 app.listen(8080,()=>{
   console.log("Running in 8080");
