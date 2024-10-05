@@ -86,6 +86,20 @@
 
 
 <script>
+
+
+
+
+// Form submission and donation process
+            document.getElementById('formDonation').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevents the form from reloading the page
+
+                submit();
+            });
+
+
+function submit() {
+
     document.getElementById('fundForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent the default form submission
 
@@ -137,6 +151,7 @@
             alert('An error occurred while adding the fundraiser , Please try again.');
         });
     });
+}
 </script>
 
 
