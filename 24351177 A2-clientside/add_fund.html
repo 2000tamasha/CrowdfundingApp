@@ -71,6 +71,10 @@
             <label for="status" class="form-label">Status</label>
             <input type="text" class="form-control" id="status" required>
         </div>
+        <div class="mb-3">
+            <label for="status" class="form-label">Category ID</label>
+            <input type="text" class="form-control" id="categoryID" required>
+        </div>
         <button type="submit" class="btn btn-success">Save</button>
     </form>
 </div>
@@ -88,6 +92,7 @@
         const currentFund = document.getElementById('currentFunding').value;
         const city = document.getElementById('city').value;
         const active = document.getElementById('status').value;
+        const categoryID = document.getElementById('categoryID').value;
 
         // Prepare the donation data
         const fundData = {
@@ -97,7 +102,8 @@
             TARGET_FUNDING: targetFunding,
             CURRENT_FUNDING: currentFunding,
             CITY: city,
-            ACTIVE: status
+            ACTIVE: status,
+            CATEGORY_ID: categoryID
         };
 
         // API endpoint for inserting a new fundraiser
