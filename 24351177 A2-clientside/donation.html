@@ -1,1 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FundWorld</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+     <!-- Navigation -->
+    <div class="container mt-3">
+        <h2>FundWorld</h2>
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link" href="index.html">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="search.html">Search</a>
+    </li>
+  </ul>
+</div>
+
+
+ 
+
+    <div class = container pt-5>
+        <h1>Fundraiser Details</h1>
+        
+<div id="data"></div>
+     <h2>Donations</h2>
+        <div id="donations"></div> 
+
+    <script>
+    window.onload = function() {
+            // Get the ID from the query string
+            const params = new URLSearchParams(window.location.search);
+            const fundID = params.get('id');
+            
+            if (fundID) {
+                fetch(`http://localhost:3060/api/FUNDRAISER/${fundID}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Check if fundraiser details exist
+                        if (data.fundraiser) {
+                            const fundraiser = data.fundraiser;
+                            const imagePath = getImage(fundraiser.FUNDRAISER_ID);
+                            // Display the fundraiser info
+                            document.getElementById('data').innerHTML = 
+                                `<div class="card" style="width: 18rem; margin: auto;">
+                                    <img src="${imagePath}" class="card-img-top" style="width:100%; height: auto;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Fundraiser ID: ${fundraiser.FUNDRAISER_ID}</h5>
+                                        <p class="card-text">Organizer: ${fundraiser.ORGANIZER}</p>
+                                        <p class="card-text">Caption: ${fundraiser.CAPTION}</p>
+                                        <p class="card-text">Target Funding: ${fundraiser.TARGET_FUNDING}</p>
+                                        <p class="card-text">Current Funding: ${fundraiser.CURRENT_FUNDING}</p>
+                                        <p class="card-text">City: ${fundraiser.CITY}</p>
+                                        <p class="card-text">Status: ${fundraiser.ACTIVE}</p>
+                                    </div>
+                                </div>`;
+                          
+                        } else {
+                            document.getElementById('data').textContent = "No fundraiser found with the ID provided.";
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error fetching fundraiser details", error);
+                        document.getElementById('data').textContent = "Failed to load fundraiser info.";
+                    });
+            } else {
+                document.getElementById('data').textContent = "Please provide fundraiser ID.";
+            }
+        };
+
+
+
+
+// Function for image retrieval based on URL
+function getImage(fundID) {
+    const imageMap = {
+        'F001': 'F001pic.jpg', // Update with actual image paths
+        'F002': 'F002pic.jpg',
+        'F003': 'F003pic.jpg',
+        'F004': 'F004pic.jpg',
+        'F005': 'F005pic.jpg'
+        
+     
+    };
+    // Return the corresponding image path 
+    return imageMap[fundID]; 
+}
+        
+
+    </script>
+
+    </div>
+
+    <!-- Footer --> 
+    <div class="container-fluid pt-5">
+           <p class="text-center">Contact us: FundWorld@org.com</p> 
+</div>
+
+
+</body>    
+</html>
 
