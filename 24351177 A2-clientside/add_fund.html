@@ -91,7 +91,7 @@
 
 
 // Form submission and donation process
-            document.getElementById('formDonation').addEventListener('submit', function(event) {
+            document.getElementById('fundForm').addEventListener('submit', function(event) {
                 event.preventDefault(); // Prevents the form from reloading the page
 
                 submit();
@@ -99,9 +99,6 @@
 
 
 function submit() {
-
-    document.getElementById('fundForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
 
         const fundID = document.getElementById('fundID').value;
         const organizer = document.getElementById('organizer').value;
@@ -150,7 +147,6 @@ function submit() {
             console.error('Error:', error);
             alert('An error occurred while adding the fundraiser , Please try again.');
         });
-    });
 }
 </script>
 
