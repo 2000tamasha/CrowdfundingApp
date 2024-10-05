@@ -32,6 +32,14 @@ app.get("/donation",(req,res)=>{
 });
 
 
+//route to serve admin.html
+app.get("/admin",(req,res)=>{
+  res.sendFile(path.join(__dirname,"admin.html"));
+});
+
+
+
+
 app.listen(8080,()=>{
   console.log("Running in 8080");
 });
