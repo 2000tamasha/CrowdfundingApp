@@ -135,7 +135,15 @@ function submitDonation() {
         },
         body: JSON.stringify(donationInfo)
     })
-    
+    .then(response => {
+        console.log("Response status:", response.status); // Log response status
+        if (!response.ok) {
+            return response.json().then(err => {
+                throw new Error(err.message || "Network response was not ok");
+            });
+        }
+        return response.json();
+    })
     .then(data => {
         console.log("Response data:", data); // Log the response data
         if (data.insert === "success") {
