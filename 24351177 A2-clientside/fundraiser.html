@@ -29,6 +29,8 @@
         <h1>Fundraiser Details</h1>
         
 <div id="data"></div>
+     <h2>Donations</h2>
+        <div id="donations"></div> <!-- To display dinations for the fundraiser -->
 
     <script>
    window.onload = function() {
@@ -76,6 +78,62 @@
         document.getElementById('data').textContent = "Please provide fundraiser ID.";
     }
 };
+
+
+
+//Function to get donations for the specific fundraiser
+
+function loadDonations(fundID) {
+                fetch(`http://localhost:3060/api/FUNDRAISER/funds/${fundID}`)
+                    .then(response => response.json())
+                    .then(donations => {
+                        if (donations.length > 0) {
+                            const donationList = donations.map(donation => `
+                                <div class="card mt-2">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Donation ID: ${donation.DONATION_ID}</h5>
+                                        <p class="card-text">Date: ${donation.DATE}</p>
+                                        <p class="card-text">Amount: ${donation.AMOUNT}</p>
+                                        <p class="card-text">Giver: ${donation.GIVER}</p>
+                                    </div>
+                                </div>
+                            `).join('');
+                            document.getElementById('donation-list').innerHTML = donationList;
+                        } else {
+                            document.getElementById('donation-list').textContent = "No donations found for this fundraiser.";
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error fetching donations", error);
+                        document.getElementById('donation-list').textContent = "Failed to load donations.";
+                    });
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Function for image retrieval based on URL
 function getImage(fundID) {
