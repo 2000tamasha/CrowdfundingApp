@@ -34,7 +34,7 @@ router.post("/", (req, res)=>{
 	var AMOUNT = req.body.AMOUNT;
         var GIVER = req.body.GIVER;
         var FUNDRAISER_ID = req.body.FUNDRAISER_ID;
-	connection.query("INSERT INTO DONATION VALUES('"+AMOUNT+"','"+GIVER+"','"+FUNDRAISER_ID+"')",  
+	connection.query("INSERT INTO DONATION (AMOUNT, GIVER, FUNDRAISER_ID) VALUES('"+AMOUNT+"','"+GIVER+"','"+FUNDRAISER_ID+"')",  
 	(err, result)=> {
 		 if (err){
 			 console.error("Error while retrieve the data" + err);
