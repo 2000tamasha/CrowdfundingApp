@@ -58,7 +58,7 @@
                                         <p class="card-text">Current Funding: ${fundraiser.CURRENT_FUNDING}</p>
                                         <p class="card-text">City: ${fundraiser.CITY}</p>
                                         <p class="card-text">Status: ${fundraiser.ACTIVE}</p>
-                                        <button class="btn btn-success" onclick="displayMessage()">Donate</button>
+                                        <a button class="btn btn-success" href= "donation.html" >Donate</a>
                                     </div>
                                 </div>`;
                             // Load the donations for the fundraiser
@@ -82,7 +82,7 @@
                 const donationList = donations.map(donation => `
                     <div class="card mt-2">
                         <div class="card-body">
-                            <h5 class="card-title">Donation ID: ${donation.DONATION_ID}</h5>
+                            <h6 class="card-title">Donation ID: ${donation.DONATION_ID}</h6>
                             <p class="card-text">Date: ${donation.DATE}</p>
                             <p class="card-text">Amount: ${donation.AMOUNT}</p>
                             <p class="card-text">Giver: ${donation.GIVER}</p>
@@ -91,7 +91,7 @@
                 `).join('');
                 document.getElementById('donations').innerHTML = donationList;
             } else {
-                document.getElementById('donations').textContent = "No donations found for this fundraiser.";
+                document.getElementById('donations').textContent = "This fundraiser has no donations at the moment.";
             }
         }
 
@@ -112,9 +112,7 @@ function getImage(fundID) {
     // Return the corresponding image path 
     return imageMap[fundID]; 
 }
-        function displayMessage(){
-            alert("This feature is under contruction");
-        }
+        
 
     </script>
 
