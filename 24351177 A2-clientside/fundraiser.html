@@ -98,14 +98,14 @@ function loadDonations(fundID) {
                                     </div>
                                 </div>
                             `).join('');
-                            document.getElementById('donation-list').innerHTML = donationList;
+                            document.getElementById('donations').innerHTML = donationList;
                         } else {
-                            document.getElementById('donation-list').textContent = "No donations found for this fundraiser.";
+                            document.getElementById('donations').textContent = "No donations found for this fundraiser.";
                         }
                     })
                     .catch(error => {
                         console.error("Error fetching donations", error);
-                        document.getElementById('donation-list').textContent = "Failed to load donations.";
+                        document.getElementById('donations').textContent = "Failed to load donations.";
                     });
             }
 
