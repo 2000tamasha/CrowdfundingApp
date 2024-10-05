@@ -44,7 +44,7 @@
                 <label for="giverEmail" class="form-label"><strong>Email</strong></label>
                 <input type="email" class="form-control" id="email" required>
             </div>
-            <button type="submit" class="btn btn-success">Submit my donation</button>
+            <button type="submit" class="btn btn-success" onclick="submitDonation()">Submit my donation</button>
         </form>
     </div>
 
@@ -96,6 +96,82 @@
         document.getElementById('data').textContent = "Please provide fundraiser ID.";
     }
 };
+
+
+
+function submitDonation() {
+            const donorAmount = parseInt(document.getElementById('amount').value);
+            const donorName = document.getElementById('name').value;
+            const donoremail = document.getElementById('email').value;
+            const fundID = new URLSearchParams(window.location.search).get('id'); // Get fund ID from URL
+
+            // Check for minimum donation amount
+            if (donorAmount < 5) {
+                alert("The minimum donation amount is 5 AUD.");
+                return;
+            }
+
+            // API endpoint for donation submission
+            const apiUrl = `http://localhost:3060/api/donation`; 
+
+            // Prepare the donation data
+            const donationInfo = {
+                AMOUNT: donationAmount,
+                GIVER: donorName,
+                FUNDRAISER_ID: fundID 
+            };
+
+            // Make API call to insert donation
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(donationInfo)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Assuming the API returns the fundraiser name in data.fundraiser_name
+                if (data.success) {
+                    alert(`Thank you for your donation to ${data.fundraiser_name}`);
+                    window.location.href = `fundraiser.html?id=${fundID}`; // Redirect to fundraiser page
+                } else {
+                    alert("Failed to submit donation.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An error occurred while submitting your donation.");
+            });
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
