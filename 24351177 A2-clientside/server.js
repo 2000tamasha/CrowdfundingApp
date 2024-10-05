@@ -37,6 +37,14 @@ app.get("/admin",(req,res)=>{
   res.sendFile(path.join(__dirname,"admin.html"));
 });
 
+//route to serve add_fund.html
+app.get("/addFund",(req,res)=>{
+  res.sendFile(path.join(__dirname,"add_fund.html"));
+});
+
+
+
+
 
 
 
