@@ -111,7 +111,7 @@ function submitDonation() {
     const fundID = new URLSearchParams(window.location.search).get('id'); // Get fund ID from URL
 
     // Validate donation amount
-    if (isNaN(donorAmount) || donorAmount < 5) {
+    if (donorAmount < 5) {
         alert("The minimum donation amount is 5 AUD.");
         return;
     }
@@ -126,7 +126,6 @@ function submitDonation() {
         FUNDRAISER_ID: fundID 
     };
 
-    console.log("Sending donation data:", donationInfo); // Log the data being sent
 
     // Make API call to insert donation
     fetch(apiUrl, {
@@ -136,15 +135,7 @@ function submitDonation() {
         },
         body: JSON.stringify(donationInfo)
     })
-    .then(response => {
-        console.log("Response status:", response.status); // Log response status
-        if (!response.ok) {
-            return response.json().then(err => {
-                throw new Error(err.message || "Network response was not ok");
-            });
-        }
-        return response.json();
-    })
+    
     .then(data => {
         console.log("Response data:", data); // Log the response data
         if (data.insert === "success") {
