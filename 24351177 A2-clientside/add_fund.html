@@ -103,8 +103,8 @@ function submit() {
         const fundID = document.getElementById('fundID').value;
         const organizer = document.getElementById('organizer').value;
         const caption = document.getElementById('caption').value;
-        const targetFund = document.getElementById('targetFunding').value;
-        const currentFund = document.getElementById('currentFunding').value;
+        const targetFund = parseInt(document.getElementById('targetFunding').value);
+        const currentFund = parseInt(document.getElementById('currentFunding').value);
         const city = document.getElementById('city').value;
         const active = document.getElementById('status').value;
         const categoryID = document.getElementById('categoryID').value;
@@ -114,10 +114,10 @@ function submit() {
             FUNDRAISER_ID: fundID,
             ORGANIZER: organizer,
             CAPTION: caption,
-            TARGET_FUNDING: targetFunding,
-            CURRENT_FUNDING: currentFunding,
+            TARGET_FUNDING: parseInt(targetFunding),
+            CURRENT_FUNDING: parseInt(currentFunding),
             CITY: city,
-            ACTIVE: status,
+            ACTIVE: active,
             CATEGORY_ID: categoryID
         };
 
