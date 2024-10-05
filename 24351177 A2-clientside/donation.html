@@ -22,12 +22,32 @@
   </ul>
 </div>
 
-
  
 
     <div class = container pt-5>
         <h4>Fundraiser Details</h4>
 <div id="data" class="card p-3" style="border: 1px solid #d6d2d2;"></div>
+
+
+
+//Donation form
+        <form id="donationForm">
+            <div class="mb-3">
+                <label for="donationAmount" class="form-label">Donation Amount (AUD)</label>
+                <input type="number" class="form-control" id="donationAmount" required>
+            </div>
+            <div class="mb-3">
+                <label for="giverName" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="giverName" required>
+            </div>
+            <div class="mb-3">
+                <label for="giverEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="giverEmail" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit my donation</button>
+        </form>
+    </div>
+
 
     <script>
     window.onload = function() {
