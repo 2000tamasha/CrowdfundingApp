@@ -74,24 +74,22 @@
 
 // Function to delete a fundraiser
         function deleteFundraiser(fundraiserID) {
-            if (confirm("Are you sure you want to delete this fundraiser?")) {
-                // API endpoint for deleting the fundraiser
-                const apiUrl = `http://localhost:3060/api/FUNDRAISER/${fundraiserID}`;
-
-                fetch(apiUrl, {
-                    method: 'DELETE'
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Failed to delete fundraiser');
-                    }
-                    return response.json();
-                })
-                .then(data => {
+            if (confirm("Are you sure you want to delete this fundraiser? This cannot be undone.")) {
+            fetch(`http://localhost:3060/api/FUNDRAISER/${fundraiserID}`, {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.delete === "success") {
                     alert('Fundraiser deleted successfully!');
-                    // Reload the page or refresh the list
+                    // Refresh the page to reload the list of fundraisers
                     location.reload();
-                })
+                } else if (data.message === "Cannot delete a fundraiser with existing donations") {
+                    alert('Cannot delete this fundraiser because it has existing donations.');
+                } else {
+                    alert(data.message || 'Failed to delete the fundraiser.');
+                }
+            })
                 .catch(error => {
                     console.error('Error:', error);
                     alert('An error occurred while deleting the fundraiser. Please try again.');
