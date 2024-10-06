@@ -51,7 +51,9 @@
                   <strong>Target funding:</strong> ${active.TARGET_FUNDING}<br>
                   <strong>Currrent funding:</strong> ${active.CURRENT_FUNDING} <br>
                   <strong>City:</strong> ${active.CITY} <br>
-                  <strong>Status:</strong>${active.ACTIVE} <br> <hr> `;
+                  <strong>Status:</strong>${active.ACTIVE} <br>
+                  <button class="btn btn-danger" onclick="deleteFundraiser('${fundraiser.FUNDRAISER_ID}')">Delete</button>
+ <hr> `;
                 
 
                   dataDiv.appendChild(newP);
