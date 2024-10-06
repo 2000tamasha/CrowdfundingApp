@@ -1,1 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Fundraiser</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Update Fundraiser</h2>
+        <form id="updateFundForm">
+            <!-- All input fields (same as add fundraiser) -->
+            <div class="mb-3">
+                <label for="fundID" class="form-label">Fundraiser ID</label>
+                <input type="text" class="form-control" id="fundID" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="organizer" class="form-label">Organizer Name</label>
+                <input type="text" class="form-control" id="organizer" required>
+            </div>
+            <div class="mb-3">
+                <label for="caption" class="form-label">Caption</label>
+                <input type="text" class="form-control" id="caption" required>
+            </div>
+            <div class="mb-3">
+                <label for="targetFunding" class="form-label">Target Funding (AUD)</label>
+                <input type="number" class="form-control" id="targetFunding" required>
+            </div>
+            <div class="mb-3">
+                <label for="currentFunding" class="form-label">Current Funding (AUD)</label>
+                <input type="number" class="form-control" id="currentFunding" required>
+            </div>
+            <div class="mb-3">
+                <label for="city" class="form-label">City</label>
+                <input type="text" class="form-control" id="city" required>
+            </div>
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <input type="text" class="form-control" id="status" required>
+            </div>
+            <div class="mb-3">
+                <label for="categoryID" class="form-label">Category ID</label>
+                <input type="text" class="form-control" id="categoryID" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+
+    <script>
+        // Get fundraiser ID from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const fundraiserID = urlParams.get('fundraiserID');
+
+        // Load fundraiser details for updating
+        fetch(`http://localhost:3060/api/FUNDRAISER/${fundraiserID}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('fundID').value = data.FUNDRAISER_ID;
+                document.getElementById('organizer').value = data.ORGANIZER;
+                document.getElementById('caption').value = data.CAPTION;
+                document.getElementById('targetFunding').value = data.TARGET_FUNDING;
+                document.getElementById('currentFunding').value = data.CURRENT_FUNDING;
+                document.getElementById('city').value = data.CITY;
+                document.getElementById('status').value = data.ACTIVE;
+                document.getElementById('categoryID').value = data.CATEGORY_ID;
+            })
+            .catch(error => {
+                console.error('Error fetching fundraiser details:', error);
+                alert('Error loading fundraiser details.');
+            });
+
+        // Submit event for updating a fundraiser
+        document.getElementById('updateFundForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting the default way
+
+            const
 
