@@ -59,8 +59,8 @@
             document.getElementById('fundID').value = data.FUNDRAISER_ID;
             document.getElementById('organizer').value = data.ORGANIZER;
             document.getElementById('caption').value = data.CAPTION;
-            document.getElementById('targetFunding').value = data.TARGET_FUNDING;
-            document.getElementById('currentFunding').value = data.CURRENT_FUNDING;
+            document.getElementById('targetFunding').value = data.TARGET_FUNDING.toString(); 
+            document.getElementById('currentFunding').value = data.CURRENT_FUNDING.toString();
             document.getElementById('city').value = data.CITY;
             document.getElementById('status').value = data.ACTIVE;
             document.getElementById('categoryID').value = data.CATEGORY_ID;
@@ -78,8 +78,8 @@
         const updatedData = {
             ORGANIZER: document.getElementById('organizer').value,
             CAPTION: document.getElementById('caption').value,
-            TARGET_FUNDING: document.getElementById('targetFunding').value,
-            CURRENT_FUNDING: document.getElementById('currentFunding').value,
+            TARGET_FUNDING: parseInt(document.getElementById('targetFunding').value),
+            CURRENT_FUNDING: parseInt(document.getElementById('currentFunding').value),
             CITY: document.getElementById('city').value,
             ACTIVE: document.getElementById('status').value,
             CATEGORY_ID: document.getElementById('categoryID').value
