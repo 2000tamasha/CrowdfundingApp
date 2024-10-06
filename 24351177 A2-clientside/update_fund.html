@@ -52,18 +52,20 @@
     const urlParams = new URLSearchParams(window.location.search);
     const fundraiserID = urlParams.get('fundraiserID');
 
+    console.log("Fundraiser ID from URL:", fundraiserID); // Log the ID
+
     // Load fundraiser details for updating
     fetch(`http://localhost:3060/api/FUNDRAISER/${fundraiserID}`)
         .then(response => {
+            console.log('Response:', response); // Log the full response
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             return response.json();
         })
         .then(data => {
-            console.log(data); // Log the API response
-            // Check if data has the expected structure
-            if (data && data.FUNDRAISER_ID) {
+            console.log('Fetched data:', data); // Log the API response
+            if (data && data.FUNDRAISER_ID) { // Check for FUNDRAISER_ID
                 document.getElementById('fundID').value = data.FUNDRAISER_ID;
                 document.getElementById('organizer').value = data.ORGANIZER || '';
                 document.getElementById('caption').value = data.CAPTION || '';
@@ -78,45 +80,7 @@
         })
         .catch(error => {
             console.error('Error fetching fundraiser details:', error);
-            alert('Error loading fundraiser details.');
+            alert('Error loading fundraiser details: ' + error.message); // Show detailed error
         });
+</script>
 
-    // Submit event for updating a fundraiser
-    document.getElementById('updateFundForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
-
-        // Gather updated fundraiser data
-        const updatedData = {
-            ORGANIZER: document.getElementById('organizer').value,
-            CAPTION: document.getElementById('caption').value,
-            TARGET_FUNDING: parseInt(document.getElementById('targetFunding').value),
-            CURRENT_FUNDING: parseInt(document.getElementById('currentFunding').value),
-            CITY: document.getElementById('city').value,
-            ACTIVE: document.getElementById('status').value,
-            CATEGORY_ID: document.getElementById('categoryID').value
-        };
-
-        // Send the update request to the backend
-        fetch(`http://localhost:3060/api/FUNDRAISER/${fundraiserID}`, {
-            method: 'PUT', // HTTP method for updating
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(updatedData) // Convert updated data to JSON format
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.update === "success") {
-                alert('Fundraiser updated successfully!');
-                // Optionally redirect or reload page after successful update
-                window.location.href = 'index.html'; // Redirect to the main page
-            } else {
-                alert(data.message || 'Failed to update the fundraiser.');
-            }
-        })
-        .catch(error => {
-            console.error('Error updating fundraiser:', error);
-            alert('An error occurred while updating the fundraiser. Please try again later.');
-        });
-    });
-    </script>
